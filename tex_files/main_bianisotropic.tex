@@ -1,0 +1,51 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvips]{graphicx}
+\graphicspath{{../figures/}}
+
+\usepackage{mathtools}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{notoccite}
+\usepackage{tikz}
+\usepackage[titletoc]{appendix}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{booktabs,siunitx}
+\newcommand{\AxisRotator}[1][rotate=0]{\tikz [x=0.25cm,y=0.60cm,line width=.2ex,-stealth,#1] \draw (0,0) arc (-150:150:1 and 1);}
+
+\newtheorem{problem}{Problem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\newtheorem{hd}{HD}
+
+\title{Analysis of the Finite Element Approximability of Three-Dimensional Time-Harmonic Electromagnetic Problems Involving Bianisotropic Materials and 
+Metamaterials}
+\author{
+ Praveen Kalarickel Ramakrishnan\footnote{Department of Electrical, Electtronic, Telecommunications Engineering and Naval Architecture, University of Genoa, Via Opera Pia 11a, I-16145, Genoa, Italy, email:pravin.nitc@gmail.com} \and 
+Mario Rene Clemente Vargas\footnote{Department of Electrical, Electtronic, Telecommunications Engineering and Naval Architecture, University of Genoa, Via Opera Pia 11a, I-16145, Genoa, Italy, email:mario.clemente@unige.it} \and 
+Mirco Raffetto\footnote{Department of Electrical, Electtronic, Telecommunications Engineering and Naval Architecture, University of Genoa, Via Opera Pia 11a, I-16145, Genoa, Italy, email:raffetto@dibe.unige.it}
+}
+
+\begin{document}
+
+\maketitle
+\input{Introduction}
+\input{Problem_definition}
+\input{Numerical_results}
+\input{Conclusions}
+
+\bibliographystyle{IEEEtran}
+\bibliography{myreferences}
+\end{document}

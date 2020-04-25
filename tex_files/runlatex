@@ -1,0 +1,7 @@
+#! /bin/sh
+latex main_bianisotropic.tex
+bibtex main_bianisotropic.aux
+latex main_bianisotropic.tex
+latex main_bianisotropic.tex
+dvipdf main_bianisotropic.dvi
+rm *.aux

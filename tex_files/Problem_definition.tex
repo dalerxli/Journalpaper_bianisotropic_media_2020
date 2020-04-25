@@ -1,0 +1,478 @@
+\section{Mathematical description of the problem}
+In this paper we are interested in electromagnetic problems that involves 
+bianisotropic media under time-harmonic excitation, which was studied in 
+\cite{kalarickel2020well}.
+While the full details of the problem definition and results are available 
+in the reference, here we provide a summary of main points in order to 
+ease the understanding of the present developments.
+
+The problem is formulated in a domain $\Omega \in \mathbb{R}^3$ 
+which has a boundary denoted by $\Gamma$.
+The time harmonic sources imply that all the resulting fields 
+are in turn time-harmonic and the assumed factor $e^{j\omega t}$ is 
+ubiquitous and is suppressed.
+The media involved in the problem is linear and time-invariant and 
+is considered to be satisfying the following constitutive relations:
+
+    \begin{equation} \label{eq:constitutiveeqn}
+      \left\{
+        \begin{array}{ll}
+          {\bf D} = (1/c_0) \, P \, {\bf E} + L \, {\bf B} 
+            & \mbox{ in } \Omega,\\
+          {\bf H} = M \, {\bf E} + c_0 \, Q \, {\bf B} 
+            & \mbox{ in } \Omega.\\
+        \end{array}
+      \right.
+    \end{equation}
+
+In the above equation, ${\bf E}$, ${\bf B}$, ${\bf D}$ and ${\bf H}$ are 
+complex valued functions defined in $\Omega$ and represent, respectively, 
+the electric field, magnetic induction, electric displacement, magnetic field 
+and $c_0$ is the speed of light in vacuum. 
+The space where we will seek ${\bf E}$ and ${\bf H}$ is 
+\cite{monkbook} (p. 82; see also p. 69)
+%
+\begin{equation}
+  U=H_{L^2,\Gamma}(\mathrm{curl},\Omega) =
+    \{ {\bf v} \in H(\mathrm{curl},\Omega) \; | \;
+    {\bf v} \times {\bf n} \in L_t^2(\Gamma) \},
+\end{equation}
+%
+where \cite{monkbook} (p. 48)
+%
+\begin{equation}
+  L_t^2(\Gamma) = \{ {\bf v} \in (L^2(\Gamma))^3 \;|\;
+    {\bf v} \cdot {\bf n} = 0 \ \textrm{ almost everywhere on }\Gamma\}.
+\end{equation}
+
+Based on Maxwell's equations, boundary conditions and constitutive relations, 
+the following variational formulation of the problem can be deduced \cite{bianisotropi_m3as}:
+given $\omega>0$, 
+  electric and magnetic current densities ${\bf J}_e, {\bf J}_m \in (L^2(\Omega))^3$ 
+  and the known term ${\bf f}_R \in L^2_t(\Gamma)$, involved in admittance boundary condition, 
+  find ${\bf E} \in U$ such that
+  %
+  \begin{equation} \label{eq:variationalprob}
+    a({\bf E},{\bf v}) = l({\bf v}) \ \ \forall {\bf v} \in U, 
+  \end{equation}
+
+\noindent
+where
+%
+\begin{eqnarray} \label{eq:sesquilinear}
+  \lefteqn{
+    a({\bf u}, {\bf v})
+    =
+    c_0 
+    \big(
+      Q \, \mathrm{curl} \, {\bf u}, 
+      \mathrm{curl} \, {\bf v}
+    \big)_{0,\Omega}
+    -
+    \frac{\omega^2}{c_0} 
+    \big( 
+      P \, {\bf u},
+      {\bf v}
+    \big)_{0,\Omega}
+    -
+    j \omega
+    \big( 
+      M \, {\bf u},
+      \mathrm{curl} \, {\bf v}
+    \big)_{0,\Omega}
+  }
+  & &
+  \nonumber
+  \\
+  & &
+  -
+  j \omega
+  \big( 
+    L \, \mathrm{curl} \, {\bf u},
+    {\bf v}
+  \big)_{0,\Omega}
+  +
+  j \omega 
+  \big(
+    Y \, ({\bf n} \times {\bf u} \times {\bf n}),
+    {\bf n} \times {\bf v} \times {\bf n}
+  \big)_{0,\Gamma}
+  %\ \ {\bf u}, {\bf v} \in U
+\end{eqnarray}
+%
+and
+%
+\begin{equation} \label{antilinear}
+  l({\bf v})
+  =
+  -
+  j \omega 
+  \big(
+    {\bf J}_e, {\bf v}
+  \big)_{0,\Omega}
+  -
+  c_0
+  \big(
+    Q \, {\bf J}_m, \mathrm{curl} \, {\bf v}
+  \big)_{0,\Omega}
+  +
+  j \omega 
+  \big(
+    L \, {\bf J}_m,
+    {\bf v}
+  \big)_{0,\Omega}
+  -
+  j \omega 
+  \big(
+    {\bf f}_R,{\bf n} \times {\bf v} \times {\bf n}
+  \big)_{0,\Gamma}.
+\end{equation}
+%
+
+In \cite{kalarickel2020well} we derived certain sufficient conditions that 
+guarantee the well posedness and finite element approximability of the problem.
+The developed theory was applied to problems involving rotating axisymmetric objects.
+In this paper we apply the theory to a wider range of problems involving bianisotropic media, 
+demonstrating the generality of the developments and obtaining interesting new solutions.
+In particular we show how the theory can be applied in the presence of metamaterials by 
+considering the equivalent media of the type discussed in literature \cite{pendry2016acsphotonics}.
+
+It could be also useful to recall some points on
+ how to check for the sufficient conditions that ensure 
+the well posedness and finite element approximability of the problem.
+In particular it was observed that most of the hypotheses are easily  
+verified for important practical problems.
+It turns out that the most critical conditions that need to be 
+verified are conditions (9) and (10) in \cite{kalarickel2020well}.
+These conditions are restated in the following equations. 
+
+\begin{equation}\label{eq:condizione2diteorema2.22delmonk}
+  \textrm{for} \ \textrm{every} \ {\bf v} \in U,
+  {\bf v} \ne 0, \quad
+  \sup_{{\bf u} \in U} \left| a({\bf u}, {\bf v}) \right| > 0,
+\end{equation}
+%
+\begin{equation} \label{eq:infsup}
+  \textrm{we} \ \textrm{can} \ \textrm{find} \ \alpha:
+  \inf_{ {\bf u} \in U, \ \| {\bf u}\|_U = 1} 
+  \sup_{{\bf v} \in U, \ \| {\bf v}\|_U \leq 1} 
+    | a({\bf u}, {\bf v}) | \ge \alpha > 0.
+\end{equation}
+%
+As described in \cite{kalarickel2020well}, to satisfy the above conditions,
+we need to verify HM9-HM15 in the paper.
+Before stating these critical hypotheses a few definitions need to be made.
+$\Omega$ is decomposed into $m$ subdomains $\Omega_i$, $i \in I = \{1,2,...m\}$. 
+This decomposition can be made such that $I=I_a \cup I_b$, 
+where $I_a$ is characterized by subdomains where $L=M=0$. 
+Also, an alternative form of constitutive relations given 
+in \eqref{eq:constitutiveeqn2} is made use of 
+to state some of the hypotheses \cite{noiregolarita}.
+
+\begin{equation} \label{eq:constitutiveeqn2}
+  \left\{
+    \begin{array}{ll}
+      {\bf E} = \kappa \, {\bf D} + \chi \, {\bf B}
+        & \mbox{ in } \Omega,\\
+      {\bf H} = \gamma \, {\bf D} + \nu \, {\bf B}
+        & \mbox{ in } \Omega.\\
+    \end{array}
+  \right.
+\end{equation}
+
+The local continuity of the tensors $P$, $Q$, $L$ and $M$ can be assumed in most 
+practical problems and which allows the definiton of the following constants.
+
+\begin{itemize}[leftmargin=*,labelsep=5.8mm] 
+  \item 
+    $\exists C_L > 0$:
+    $| ( L \, \mathrm{curl} \, {\bf u}, {\bf v} )_{0,\Omega} |
+    \le 
+    C_L \| \mathrm{curl} \, {\bf u} \|_{0,\Omega} \| {\bf v} \|_{0,\Omega}$ 
+    for all ${\bf u} \in H(\mathrm{curl}, \Omega)$ and 
+    ${\bf v} \in (L^2(\Omega))^3$,
+  \item 
+    $\exists C_M > 0$:
+    $| ( M \, {\bf u}, \mathrm{curl} \, {\bf v} )_{0,\Omega} |
+    \le 
+    C_M \| {\bf u} \|_{0,\Omega} \| \mathrm{curl} \,{\bf v} \|_{0,\Omega}$ 
+    for all ${\bf u} \in (L^2(\Omega))^3$ and 
+    ${\bf v} \in H(\mathrm{curl}, \Omega)$.
+\end{itemize}
+%
+
+Now the important hypotheses are restated here and are renamed as H1-H7.
+
+\begin{description}[leftmargin=32pt,labelsep=7pt]
+  \item[H1.]
+    $\exists\exists C_{\kappa,d} > 0, \, C_{\nu,d} > 0:
+      |determinant\left(\kappa\right)| \ge C_{\kappa,d}, \,
+      |determinant\left(\nu\right)| \ge C_{\nu,d}, \, 
+      \forall {\bf x} \in \overline{\Omega}_i, \forall i \in I$, 
+\end{description}
+%
+\begin{description}[leftmargin=32pt,labelsep=7pt]
+  \item[H2.]
+    ${\bf l}_{1,3}^T \, \kappa^{-1} \, {\bf l}_{1,3} \ne 0, \
+    {\bf l}_{1,3}^T \, \nu^{-1} \, {\bf l}_{1,3} \ne 0 \
+    \forall {\bf l}_{1,3} \in \mathbb{R}^3, {\bf l}_{1,3} \ne 0, \
+    \forall {\bf x} \in \overline{\Omega}_i, \, \forall i \in I_a$,
+\end{description}
+%
+\begin{description}[leftmargin=38pt,labelsep=7pt]
+  \item[H3.]
+    $\exists \exists C_{\kappa,r} > 0, \ C_{\nu,r} > 0: \ 
+      |{\bf l}_{1,3,n}^T \, \kappa^{-1} \, {\bf l}_{1,3,n}| \ge C_{\kappa,r}, \
+      |{\bf l}_{1,3,n}^T \, \nu^{-1} \, {\bf l}_{1,3,n}| \ge C_{\nu,r}
+      \ \forall {\bf l}_{1,3,n} \in \mathbb{R}^3: \| {\bf l}_{1,3,n} \|_2 = 1, \
+      \forall {\bf x} \in \overline{\Omega}_i, \, \forall i \in I_b$,
+\end{description}
+%
+\begin{description}[leftmargin=32pt,labelsep=7pt]
+  \item[H4.]
+    $\exists \exists C_{\kappa,s} > 0, C_{\nu,s} > 0$:
+    %
+    \begin{equation}
+      \big( \sum_{i, j = 1}^3 |\kappa_{ij}| \big) - 
+        \min_{i=1,2,3} |\kappa_{ii}| \le C_{\kappa,s}
+      \quad \forall {\bf x} \in \overline{\Omega}_k, \, \forall k \in I_b,
+    \end{equation}
+    %
+    \begin{equation}
+      \big( \sum_{i, j = 1}^3 |\nu_{ij}| \big) - 
+        \min_{i=1,2,3} |\nu_{ii}| \le C_{\nu,s}
+      \quad \forall {\bf x} \in \overline{\Omega}_k, \, \forall k \in I_b,
+    \end{equation}
+    %
+    and $\kappa$, $\chi$, $\gamma$ and $\nu$ satisfy
+    %
+    \begin{equation} \label{condizionesubianisotropixalgogenerale}
+      \frac{4 \,
+            \Big( \big( \sum_{i, j = 1}^3 |\gamma_{ij}| \big) - 
+                  \min_{i=1,2,3} |\gamma_{ii}| \Big)
+            \,
+            \Big( \big( \sum_{i, j = 1}^3 |\chi_{ij}| \big) - 
+                  \min_{i=1,2,3} |\chi_{ii}| \Big)
+           }{
+        \big( 
+          - C_{\kappa,s} + 
+          \sqrt{ C_{\kappa,s}^2 + 4 \, C_{\kappa,d} \, C_{\kappa,r}} 
+        \big) \, 
+        \big( 
+          - C_{\nu,s} + 
+          \sqrt{ C_{\nu,s}^2 + 4 \, C_{\nu,d} \, C_{\nu,r}} 
+        \big)} 
+      < 1
+    \end{equation}
+    %
+    $\forall {\bf x} \in \overline{\Omega}_k, \, \forall k \in I_b$.
+\end{description}
+%
+
+\begin{description}
+  \item[H5.]
+    We can find $C_{PS} > 0$ such that 
+    $|(P {\bf u}, {\bf u})_{0,\Omega}| 
+    \ge 
+    C_{PS} \| {\bf u} \|_{0,\Omega}^2$ 
+    for all ${\bf u} \in (L^2(\Omega))^3$.
+\end{description}
+%
+\begin{description}
+  \item[H6.]
+    We can find $C_{QS} > 0$ such that 
+    $|(Q \mathrm{curl} \, {\bf u}, \mathrm{curl} \, {\bf u})_{0,\Omega}| 
+    \ge 
+    C_{QS} \| \mathrm{curl} \, {\bf u} \|_{0,\Omega}^2$ 
+    for all ${\bf u} \in H(\mathrm{curl}, \Omega)$.
+\end{description}
+% 
+
+\begin{description}
+  \item[H7.]
+    $C_{PS}$, $C_{QS}$, $C_L$ and $C_M$ (i.e., all media involved) 
+    are such that  $C_{QS} - \frac{C_L C_M}{C_{PS}} > 0$.
+\end{description}
+%
+
+The section ``some hints to apply the developed theory'' 
+of \cite{kalarickel2020well}, provided the guidance to use 
+the theory that was developed.
+Lemma 1 of the above paper provides a procedure to check 
+conditions H5 and H6 and thus estimate the constants 
+$C_{PS}$ and $C_{QS}$ which may in turn be used to check H7. 
+Let $P$ be decomposed as $P=P_s - jP_{ss}$, and if 
+$P_{ss}$ is uniformly positive definite in some region $\Omega_{el}$
+and $P_s$ is uniformly positive definite in the complementary region 
+$\Omega \setminus \Omega_{el}$, then H5 can be shown to be true 
+in the following way.
+We can define $C_1 >0$ and $C_2 >0$ as follows.
+
+\begin{equation} \label{eq:c1_constant}
+    \int_{\Omega_{el}}{\bf u}^*P_{ss}{\bf u} \geq C_1 \int_{\Omega{el}}|{\bf u}|^2 = C_1 ||{\bf u}||^2_{0, \Omega_{el}} \hbox{   } \forall {\bf u} \in (L^2(\Omega))^3,
+\end{equation}
+
+\begin{equation} \label{eq:c2_constant}
+    \left|\int_{\Omega \setminus \Omega_{el}} {\bf u}^*P_s{\bf u}\right| \geq C_2||{\bf u}||^2_{0,\Omega \setminus \Omega_{el}}.
+\end{equation}
+
+The continuity of $P_s$ in $\Omega_{el}$ allows the definition of $C_3 > 0$ such that 
+  \begin{equation} \label{eq:c3_constant}
+    \left| \int_{\Omega_{el}} {\bf u}^* P_s {\bf u} \right| \le 
+      C_3 \|{\bf u}\|^2_{0,\Omega_{el}}.
+  \end{equation}
+
+If $\Omega_{el}=\Omega$, then we can take $C_{PS} = C_1$, if 
+$\Omega_{el} = \emptyset$ then $C_{PS} = C_2$ and in other cases
+
+  \begin{equation} \label{eq:cps_metamaterial}
+    C_{PS} = 
+      \frac{1}{\sqrt{2}} 
+      \min 
+      \left( 
+        \sqrt{(1-\alpha)} C_2, \sqrt{C_1^2+(1-\frac{1}{\alpha}) C_3^2}
+      \right),
+  \end{equation}
+  %
+  where $\alpha$ is such that 
+  $1 > \alpha > \frac{C_3^2}{C_1^2+C_3^2} > 0$.
+
+Similar considerations can help to estimate $C_{QS}$ as well.
+
+The values obtained above may not the best possible ones than can 
+be estimated and the 
+condition in H7 can be made less restrictive 
+if the estimates of $C_{PS}$ and $C_{QS}$ can be higher.
+For example, whenever $P_s$ is uniformly definite 
+in $\Omega$, we have $C_4 >0$ such that
+
+\begin{equation} \label{eq:c4_constant}
+  \left| \int_{\Omega} {\bf u}^*P_s{\bf u} \right| 
+  \geq 
+  C_4||{\bf u}||^2_{0,\Omega}.
+\end{equation}
+
+In this case, the best value for $C_{PS}$ would be the 
+larger among the one in \eqref{eq:cps_metamaterial} and $C_4$.
+Based on the definitions, the constants $C_L$ and $C_M$ can
+be  estimated and the validity of H7 can be checked.
+
+\begin{equation} \label{equationnumber27}
+  C_L = 
+    \max_{i \in I_b} 
+    \sup_{{\bf x} \in \Omega_i} \sqrt{\lambda_{max}(L^* L)} 
+\end{equation}
+%
+and 
+%
+\begin{equation} \label{equationnumber28}
+  C_M = 
+    \max_{i \in I_b} 
+    \sup_{{\bf x} \in \Omega_i} \sqrt{\lambda_{max}(M^* M)},
+\end{equation}
+
+As for the constants involved in H1-H4,  the following considerations
+can be helpful.
+
+\begin{equation} \label{equationnumber29}
+  C_{\kappa, d} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i} 
+    |determinant(\kappa)|,
+\end{equation}
+%
+\begin{equation} \label{equationnumber30}
+  C_{\nu, d} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i} 
+    |determinant(\nu)|,
+\end{equation}
+%
+\begin{equation} \label{equationnumber31}
+  C_{\kappa,s} = 
+    \max_{i \in I_b} \sup_{{\bf x} \in \Omega_i} 
+      \left((\sum_{i,j=1}^3|\kappa_{ij}|)-\mathrm{min}_{i=1,2,3}|\kappa_{ii}| \right),
+\end{equation}
+%
+\begin{equation} \label{equationnumber32}
+  C_{\nu,s} = 
+    \max_{i \in I_b} \sup_{{\bf x} \in \Omega_i} 
+    \left((\sum_{i,j=1}^3|\nu_{ij}|)-\mathrm{min}_{i=1,2,3}|\nu_{ii}| \right).
+\end{equation}
+%
+
+As for $C_{\kappa, r}$ and $C_{\nu, r}$ the following consideration
+might be helpful.
+By definition
+%
+\begin{equation} \label{equationnumber33}
+  C_{\kappa, r} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i} \quad
+    \min_{{\bf l}_{1,3,n} \in \mathbb{R}^3: \| {\bf l}_{1,3,n} \|_2 = 1} 
+    \sqrt{\left(
+            {\bf l}_{1,3,n}^T \kappa_{is} {\bf l}_{1,3,n}
+          \right)^2 
+          + 
+          \left(
+            {\bf l}_{1,3,n}^T \kappa_{iss} {\bf l}_{1,3,n}
+          \right)^2},
+\end{equation}
+%
+\begin{equation} \label{equationnumber34}
+  C_{\nu, r} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i} \quad
+    \min_{{\bf l}_{1,3,n} \in \mathbb{R}^3: \| {\bf l}_{1,3,n} \|_2 = 1} 
+    \sqrt{\left(
+            {\bf l}_{1,3,n}^T \nu_{is} {\bf l}_{1,3,n}
+          \right)^2 
+          + 
+          \left(
+            {\bf l}_{1,3,n}^T \nu_{iss} {\bf l}_{1,3,n}
+          \right)^2},
+\end{equation}
+%
+where $\kappa_{is}$ and $\kappa_{iss}$ are the symmetric matrices 
+obtained by the usual decomposition of $\kappa^{-1}$ and similarly 
+$\nu_{is}$ and $\nu_{iss}$ are those corresponding to $\nu^{-1}$. 
+If both the symmetric matrices involved in the above expressions are 
+semi-definite, then we can deduce the following lower bounds:
+%
+\begin{equation} \label{equationnumber35}
+  C_{\kappa, r} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i}
+    \sqrt{ \left( \lambda_{min}(\kappa_{is}) \right)^2 
+           + 
+           \left( \lambda_{min}(\kappa_{iss}) \right)^2},
+\end{equation}
+%
+\begin{equation} \label{equationnumber36}
+  C_{\nu, r} = 
+    \min_{i \in I_b} \inf_{{\bf x} \in \Omega_i}
+    \sqrt{ \left( \lambda_{min}(\nu_{is}) \right)^2 
+           + 
+           \left( \lambda_{min}(\nu_{iss}) \right)^2}.
+\end{equation}
+%
+
+If we also define
+%
+\begin{equation} \label{equationnumber37}
+  C_{\chi,s} = 
+    \max_{i \in I_b} \sup_{{\bf x} \in \Omega_i} 
+      \left((\sum_{i,j=1}^3|\chi_{ij}|)-\mathrm{min}_{i=1,2,3}|\chi_{ii}| \right),
+\end{equation}
+%
+\begin{equation} \label{equationnumber38}
+  C_{\gamma,s} = 
+    \max_{i \in I_b} \sup_{{\bf x} \in \Omega_i} 
+    \left((\sum_{i,j=1}^3|\gamma_{ij}|)-\mathrm{min}_{i=1,2,3}|\gamma_{ii}| \right),
+\end{equation}
+%
+the sufficient condition for the regularity used for proving 
+uniqueness can be expressed as
+%
+\begin{equation} \label{equationnumber39}
+  K_{u} = 
+  \frac{4 C_{\chi,s} C_{\gamma,s}}{
+  \left( -C_{\kappa,s} + \sqrt{C_{\kappa,s}^2+4C_{\kappa,d}C_{\kappa,r}} \right)
+  \left( -C_{\nu,s} + \sqrt{C_{\nu,s}^2+4C_{\nu,d}C_{\nu,r}} \right)} < 1.
+\end{equation}
+%

@@ -1,0 +1,8 @@
+set terminal postscript eps enhanced "Helvetica" 20
+set output "critical_zeta_vs_imag_epsilon_pendry_inf_sup.eps"
+#set grid
+set yrange [-0.0:0.6]
+set xrange [-0.1:-0.5]
+set xlabel 'Im({/Symbol e}_r)'
+#set ylabel '|{/Symbol z}_0|'
+plot 'outputfile_real_epsilon-1.0' u 2:3 w l  t 'Re({/Symbol e}_r) = - 1.0', 'outputfile_real_epsilon-2.0' u 2:3 w l  t 'Re({/Symbol e}_r) = - 2.0', 'outputfile_real_epsilon-3.0' u 2:3 w l  t 'Re({/Symbol e}_r) = - 3.0', 'outputfile_real_epsilon-4.0' u 2:3 w l  t 'Re({/Symbol e}_r) = - 4.0'

@@ -1,0 +1,28 @@
+#! /bin/bash
+
+#Author: Praveen K R
+#Date: 04/November/2019
+
+#Parameters
+#real_epsilonr=-1.0
+#imag_epsilonr=-0.5
+
+#Compilation
+g++ -o main.o main.cpp
+
+#Execution
+for imag_epsilonr in  $(seq -0.1 -0.01 -0.5)
+do
+for real_epsilonr in -1 -2 -3 -4 -5
+do
+echo $real_epsilonr > inputfile
+echo $imag_epsilonr >> inputfile
+./main.o < inputfile >> 'outputfile_real_epsilon_'$real_epsilonr
+
+rm inputfile
+done
+done
+
+#Cleaning
+#rm inputfile
+rm *.o

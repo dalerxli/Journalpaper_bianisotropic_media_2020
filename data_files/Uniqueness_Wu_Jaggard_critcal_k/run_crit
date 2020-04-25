@@ -1,0 +1,25 @@
+#!/bin/bash  
+
+echo "Beginning of the parameter definition phase"
+
+# parameters
+
+outfilename=outputfile
+
+for epsilon_r in $(seq 1.0 0.1 10.0)
+do
+  
+  echo $epsilon_r > inputfile
+
+#echo "Execution phase"
+
+g++ -Wall -o main.o main.cpp  -lgsl -lm -lgslcblas 
+./main.o < inputfile >> $outfilename
+
+#cleaning 
+rm inputfile
+rm *.o
+ 
+ done
+
+echo "Simulation complete"

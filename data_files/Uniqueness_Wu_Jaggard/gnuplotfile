@@ -1,12 +1,12 @@
 set terminal postscript eps enhanced "Helvetica" 20
 set output "regularity_factor_vs_xi_wu.eps"
-set key bottom right
+set key top left
 #set grid
-set xrange [4e-4:1.6e-3]
-set xtics (1e-4, 2e-4, 4e-4, 6e-4, 8e-4, 1.2e-3, 1.6e-3)
-set logscale x
-set logscale y
-set xlabel '|{/Symbol x}_c| [mho]'
+set xrange [4e-4:1.4e-3]
+#set xtics (1e-4, 2e-4, 4e-4, 6e-4, 8e-4, 1.2e-3, 1.6e-3)
+#set logscale x
+#set logscale y
+set xlabel '{/Symbol x}_c [mho]'
 set format x "%2.1t{/Symbol &{s}}10^{%L}"
 #set format y "10^{%L}"
 

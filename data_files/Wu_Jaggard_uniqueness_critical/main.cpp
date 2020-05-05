@@ -33,7 +33,7 @@ int main()
    while( (Ku > 1) && (zeta_c > 0))
    {
       Ku = calculateKu(epsilon_r, zeta_c);
-      zeta_c -= 1.0e-5;
+      zeta_c -= 1.0e-6;
    }
 
   cout << scientific << epsilon_r << "\t" << zeta_c << "\t" << Ku << endl;

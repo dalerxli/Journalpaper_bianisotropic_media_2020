@@ -1,0 +1,7 @@
+#! /bin/bash
+pdflatex draw_waveguide.tex
+pdftops -eps draw_waveguide.pdf draw_waveguide.eps
+
+rm *.pdf
+rm *.aux
+rm *.log
